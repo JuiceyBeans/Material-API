@@ -1,5 +1,7 @@
 package com.juiceybeans.materialapi.api;
 
+import com.juiceybeans.materialapi.common.IconSets;
+
 import lombok.Getter;
 import lombok.Setter;
 

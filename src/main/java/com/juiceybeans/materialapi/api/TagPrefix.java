@@ -1,5 +1,6 @@
 package com.juiceybeans.materialapi.api;
 
+import com.juiceybeans.materialapi.common.IconSets;
 import com.juiceybeans.materialapi.common.util.LangUtil;
 
 import it.unimi.dsi.fastutil.objects.Object2ObjectLinkedOpenHashMap;

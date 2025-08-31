@@ -1,5 +1,7 @@
 package com.juiceybeans.materialapi.api;
 
+import com.juiceybeans.materialapi.common.IconSets;
+
 import it.unimi.dsi.fastutil.ints.IntArrayList;
 import it.unimi.dsi.fastutil.ints.IntList;
 import lombok.Getter;

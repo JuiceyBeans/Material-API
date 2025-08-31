@@ -1,4 +1,6 @@
-package com.juiceybeans.materialapi.api;
+package com.juiceybeans.materialapi.common;
+
+import com.juiceybeans.materialapi.api.IconSet;
 
 public class IconSets {
 
