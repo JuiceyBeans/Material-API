@@ -15,11 +15,7 @@ public class ClientProxy {
     @SubscribeEvent
     public static void registerItemColors(RegisterColorHandlersEvent.Item event) {
         for (var item : ModItems.MATERIAL_ITEMS_BUILDER.build().values()) {
-            if (item.get() instanceof TagPrefixItem tagPrefixItem) {
-                event.register(
-                        TagPrefixItem.tintColor(tagPrefixItem.getMaterial()),
-                        tagPrefixItem);
-            }
+            event.register(TagPrefixItem.tintColor(item.get().getMaterial()), item.get());
         }
     }
 }

@@ -1,8 +1,11 @@
 package com.juiceybeans.materialapi.common.tab;
 
 import com.juiceybeans.materialapi.Main;
+import com.juiceybeans.materialapi.api.Material;
+import com.juiceybeans.materialapi.api.TagPrefix;
 import com.juiceybeans.materialapi.common.block.ModBlocks;
 import com.juiceybeans.materialapi.common.item.ModItems;
+import com.juiceybeans.materialapi.common.util.MaterialHelper;
 
 import net.minecraft.core.registries.Registries;
 import net.minecraft.network.chat.Component;
@@ -21,14 +24,15 @@ public class ModTabs {
     public static final DeferredRegister<CreativeModeTab> TABS = DeferredRegister.create(Registries.CREATIVE_MODE_TAB,
             Main.MOD_ID);
 
-    public static final Supplier<CreativeModeTab> MATERIAL_TAB = TABS.register("material_tab", () -> CreativeModeTab.builder()
-            .title(Component.translatable("itemGroup." + Main.MOD_ID + ".material_tab"))
-            .icon(() -> new ItemStack(ModItems.TEST_ITEM.get()))
-            .displayItems((params, output) -> {
-                addItems(output);
-                addBlocks(output);
-            })
-            .build());
+    public static final Supplier<CreativeModeTab> MATERIAL_TAB = TABS.register("material_tab",
+            () -> CreativeModeTab.builder()
+                    .title(Component.translatable("itemGroup." + Main.MOD_ID + ".material_tab"))
+                    .icon(() -> new ItemStack(MaterialHelper.getPrefixItem(Material.SCHRABIDIUM, TagPrefix.INGOT)))
+                    .displayItems((params, output) -> {
+                        addItems(output);
+                        addBlocks(output);
+                    })
+                    .build());
 
     public static void register(IEventBus eventBus) {
         TABS.register(eventBus);

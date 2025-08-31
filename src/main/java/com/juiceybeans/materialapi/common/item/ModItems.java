@@ -15,7 +15,7 @@ import net.minecraftforge.registries.RegistryObject;
 
 public class ModItems {
 
-    public static ImmutableTable.Builder<TagPrefix, Material, RegistryObject<?>> MATERIAL_ITEMS_BUILDER = ImmutableTable
+    public static ImmutableTable.Builder<TagPrefix, Material, RegistryObject<TagPrefixItem>> MATERIAL_ITEMS_BUILDER = ImmutableTable
             .builder();
 
     public static final DeferredRegister<Item> ITEMS = DeferredRegister.create(ForgeRegistries.ITEMS, Main.MOD_ID);
