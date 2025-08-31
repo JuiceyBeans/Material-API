@@ -6,7 +6,10 @@ import com.juiceybeans.materialapi.api.TagPrefix;
 import lombok.Getter;
 import lombok.Setter;
 
+import net.minecraft.client.color.item.ItemColor;
 import net.minecraft.world.item.Item;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
 
 public class TagPrefixItem extends Item {
 
@@ -23,12 +26,17 @@ public class TagPrefixItem extends Item {
         this.material = material;
     }
 
-    // @Override
-    // public Component getName(ItemStack pStack) {
-    // return Component.translatable("item.materialapi." + getId());
-    // }
+    @OnlyIn(Dist.CLIENT)
+    public static ItemColor tintColor(Material material) {
+        return ((itemStack, tintIndex) -> {
+            if (tintIndex == 0) {
+                return material.getColor();
+            }
+            return 0xFFFFFF; // No tint for other layers
+        });
+    }
 
-    public String getId() {
+    public String getUnlocalisedName() {
         return this.material.getName() + "_" + this.tagPrefix.getName();
     }
 }

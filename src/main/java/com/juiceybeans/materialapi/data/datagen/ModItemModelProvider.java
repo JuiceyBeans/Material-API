@@ -2,6 +2,7 @@ package com.juiceybeans.materialapi.data.datagen;
 
 import com.juiceybeans.materialapi.Main;
 import com.juiceybeans.materialapi.common.item.ModItems;
+import com.juiceybeans.materialapi.common.item.TagPrefixItem;
 
 import net.minecraft.data.PackOutput;
 import net.minecraft.resources.ResourceLocation;
@@ -20,19 +21,28 @@ public class ModItemModelProvider extends ItemModelProvider {
     @Override
     protected void registerModels() {
         for (RegistryObject<Item> item : ModItems.ITEMS.getEntries()) {
-            simpleItem(item);
+            if (item.get() instanceof TagPrefixItem tagPrefixItem) {
+                prefixItem(tagPrefixItem);
+            } else simpleItem(item);
         }
+    }
+
+    private ItemModelBuilder prefixItem(TagPrefixItem itemRegistryObject) {
+        return withExistingParent(itemRegistryObject.getUnlocalisedName(),
+                new ResourceLocation("item/generated")).texture("layer0",
+                        Main.id("item/icon_set/" + itemRegistryObject.getMaterial().getIconSet().getName() + "/" +
+                                itemRegistryObject.getTagPrefix().getName()));
     }
 
     private ItemModelBuilder simpleItem(RegistryObject<Item> itemRegistryObject) {
         return withExistingParent(itemRegistryObject.getId().getPath(),
                 new ResourceLocation("item/generated")).texture("layer0",
-                        new ResourceLocation(Main.MOD_ID, "item/" + itemRegistryObject.getId().getPath()));
+                        Main.id("item/" + itemRegistryObject.getId().getPath()));
     }
 
     private ItemModelBuilder handheldItem(RegistryObject<Item> itemRegistryObject) {
         return withExistingParent(itemRegistryObject.getId().getPath(),
                 new ResourceLocation("item/handheld")).texture("layer0",
-                        new ResourceLocation(Main.MOD_ID, "item/" + itemRegistryObject.getId().getPath()));
+                        Main.id("item/" + itemRegistryObject.getId().getPath()));
     }
 }

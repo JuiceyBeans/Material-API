@@ -1,6 +1,6 @@
 {
   "parent": "minecraft:item/generated",
   "textures": {
-    "layer0": "materialapi:item/icon_set/default/gear"
+    "layer0": "materialapi:item/icon_set/default/ingot"
   }
 }
