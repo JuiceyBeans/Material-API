@@ -1,5 +1,6 @@
 package com.juiceybeans.materialapi.api;
 
+import com.juiceybeans.materialapi.common.util.LangUtil;
 import it.unimi.dsi.fastutil.objects.Object2ObjectLinkedOpenHashMap;
 import lombok.Getter;
 import lombok.Setter;
@@ -35,12 +36,16 @@ public class TagPrefix {
     @Getter
     @Setter
     private boolean isIgnored;
+    @Getter
+    @Setter
+    private IconSet iconSet;
 
     public TagPrefix(String name) {
         this.name = name;
         this.idPattern = "%s";
         this.langValue = "%s";
         this.generateItem = true;
+        this.iconSet = IconSets.DEFAULT;
         PREFIXES.put(name, this);
     }
 
@@ -49,18 +54,44 @@ public class TagPrefix {
         this.idPattern = builder.idPattern;
         this.langValue = builder.langValue;
         this.generateItem = builder.generateItem;
+        this.iconSet = builder.iconSet;
         PREFIXES.put(name, this);
     }
+
+    public static final TagPrefix INGOT = new TagPrefix.Builder("ingot")
+            .idPattern("%s_ingot")
+            .langValue("%s Ingot")
+            .build();
+
+    public static final TagPrefix PLATE = new TagPrefix.Builder("plate")
+            .idPattern("%s_plate")
+            .langValue("%s Plate")
+            .build();
+
+    public static final TagPrefix GEAR = new TagPrefix.Builder("gear")
+            .idPattern("%s_gear")
+            .langValue("%s Gear")
+            .build();
+
+    public static final TagPrefix ROD = new TagPrefix.Builder("rod")
+            .idPattern("%s_rod")
+            .langValue("%s Rod")
+            .build();
 
     public static class Builder {
 
         private final String name;
         private String idPattern;
         private String langValue;
-        private boolean generateItem = true;
+        private boolean generateItem;
+        private IconSet iconSet;
 
         public Builder(String name) {
             this.name = name;
+            this.idPattern = "%s_" + name;
+            this.langValue = "%s" + LangUtil.formatToEnglishLocalization(name);
+            this.generateItem = true;
+            this.iconSet = IconSets.DEFAULT;
         }
 
         public Builder idPattern(String idPattern) {
@@ -78,14 +109,17 @@ public class TagPrefix {
             return this;
         }
 
+        public Builder iconSet(IconSet iconSet) {
+            this.iconSet = iconSet;
+            return this;
+        }
+
         public TagPrefix build() {
             return new TagPrefix(this);
         }
     }
 
-    public static final TagPrefix NULL_PREFIX = new TagPrefix.Builder("plate")
-            .idPattern("%s_null")
-            .langValue("%s Null Item")
+    public static final TagPrefix NULL_PREFIX = new TagPrefix.Builder("null")
             .generateItem(false)
             .build();
 

@@ -1,5 +1,7 @@
 package com.juiceybeans.materialapi.api;
 
+import it.unimi.dsi.fastutil.ints.IntArrayList;
+import it.unimi.dsi.fastutil.ints.IntList;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -11,24 +13,31 @@ public class Material {
 
     public final static Map<String, Material> MATERIALS = new HashMap<>();
 
-    @Getter
-    @Setter
+    @Getter @Setter
     private String name;
+    @Getter @Setter
+    private int color = 0xFFFFFF;
+    @Getter @Setter
+    private IntList colors = IntArrayList.of(-1, 1);
     @Getter
     @Setter
-    private int color;
+    private IconSet iconSet;
 
     public Material(String name) {
         this.name = name;
-        this.color = 0xFFFFFF;
+        this.iconSet = IconSets.DEFAULT;
         MATERIALS.put(name, this);
     }
 
     public Material(String name, int color) {
         this.name = name;
+        this.iconSet = IconSets.DEFAULT;
         this.color = color;
         MATERIALS.put(name, this);
     }
+
+    public static final Material SCHRABIDIUM = new Material("schrabidium", 0xad3931);
+    public static final Material JUICY_IRON = new Material("juicy_iron", 0x5d7da3);
 
     public static Material get(String name) {
         return MATERIALS.get(name);
