@@ -25,6 +25,6 @@ public abstract class ModLangProvider extends LanguageProvider {
     }
 
     private void addLang() {
-        // add("itemGroup.materialapi.test_key", "Test Key");
+        add("itemGroup.materialapi.material_tab", "Material API");
     }
 }

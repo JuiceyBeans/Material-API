@@ -21,8 +21,8 @@ public class ModTabs {
     public static final DeferredRegister<CreativeModeTab> TABS = DeferredRegister.create(Registries.CREATIVE_MODE_TAB,
             Main.MOD_ID);
 
-    public static final Supplier<CreativeModeTab> TEST_TAB = TABS.register("test_tab", () -> CreativeModeTab.builder()
-            .title(Component.translatable("itemGroup." + Main.MOD_ID + ".test_tab"))
+    public static final Supplier<CreativeModeTab> MATERIAL_TAB = TABS.register("material_tab", () -> CreativeModeTab.builder()
+            .title(Component.translatable("itemGroup." + Main.MOD_ID + ".material_tab"))
             .icon(() -> new ItemStack(ModItems.TEST_ITEM.get()))
             .displayItems((params, output) -> {
                 addItems(output);
