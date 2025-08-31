@@ -9,7 +9,16 @@ public class IconSet {
     @Setter
     private String name;
 
+    @Getter
+    @Setter
+    private IconSet parentIconSet = IconSets.DEFAULT;
+
     public IconSet(String name) {
         this.name = name;
+    }
+
+    public IconSet(String name, IconSet parentIconSet) {
+        this.name = name;
+        this.parentIconSet = parentIconSet;
     }
 }

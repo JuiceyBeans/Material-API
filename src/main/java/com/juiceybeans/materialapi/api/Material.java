@@ -39,8 +39,15 @@ public class Material {
         MATERIALS.put(name, this);
     }
 
+    public Material(String name, int color, IconSet iconSet) {
+        this.name = name;
+        this.iconSet = iconSet;
+        this.color = color;
+        MATERIALS.put(name, this);
+    }
+
     public static final Material SCHRABIDIUM = new Material("schrabidium", 0xad3931);
-    public static final Material JUICY_IRON = new Material("juicy_iron", 0x5d7da3);
+    public static final Material JUICY_IRON = new Material("juicy_iron", 0x5d7da3, IconSets.METALLIC);
 
     public static Material get(String name) {
         return MATERIALS.get(name);
