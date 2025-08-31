@@ -15,7 +15,7 @@ import net.minecraftforge.registries.RegistryObject;
 
 public class ModItems {
 
-    public static ImmutableTable.Builder<TagPrefix, Material, RegistryObject<TagPrefixItem>> MATERIAL_ITEMS_BUILDER = ImmutableTable
+    public static ImmutableTable.Builder<TagPrefix, Material, RegistryObject<TagPrefixItem>> PREFIX_ITEMS_BUILDER = ImmutableTable
             .builder();
 
     public static final DeferredRegister<Item> ITEMS = DeferredRegister.create(ForgeRegistries.ITEMS, Main.MOD_ID);
@@ -42,7 +42,7 @@ public class ModItems {
         var item = ModItems.ITEMS.register((material.getName() + "_" + tagPrefix.getName()), () -> new TagPrefixItem(
                 tagPrefix, material, new Item.Properties()));
 
-        MATERIAL_ITEMS_BUILDER.put(tagPrefix, material, item);
+        PREFIX_ITEMS_BUILDER.put(tagPrefix, material, item);
         Main.LOGGER.debug("Generated prefix item {}", (material.getName() + "_" + tagPrefix.getName()));
     }
 }

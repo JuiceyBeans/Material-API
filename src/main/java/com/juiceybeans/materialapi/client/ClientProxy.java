@@ -14,7 +14,7 @@ public class ClientProxy {
 
     @SubscribeEvent
     public static void registerItemColors(RegisterColorHandlersEvent.Item event) {
-        for (var item : ModItems.MATERIAL_ITEMS_BUILDER.build().values()) {
+        for (var item : ModItems.PREFIX_ITEMS_BUILDER.build().values()) {
             event.register(TagPrefixItem.tintColor(item.get().getMaterial()), item.get());
         }
     }
