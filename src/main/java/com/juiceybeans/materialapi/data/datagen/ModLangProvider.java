@@ -2,6 +2,7 @@ package com.juiceybeans.materialapi.data.datagen;
 
 import com.juiceybeans.materialapi.Main;
 import com.juiceybeans.materialapi.common.item.ModItems;
+import com.juiceybeans.materialapi.common.item.TagPrefixItem;
 import com.juiceybeans.materialapi.common.util.LangUtil;
 
 import net.minecraft.data.PackOutput;
@@ -18,6 +19,9 @@ public abstract class ModLangProvider extends LanguageProvider {
     @Override
     protected void addTranslations() {
         for (RegistryObject<Item> item : ModItems.ITEMS.getEntries()) {
+            if (item.get() instanceof TagPrefixItem) {
+                continue;
+            }
             addItem(item, LangUtil.formatToEnglishLocalization(item.getId().getPath()));
         }
 
@@ -26,5 +30,6 @@ public abstract class ModLangProvider extends LanguageProvider {
 
     private void addLang() {
         add("itemGroup.materialapi.material_tab", "Material API");
+        add("item.materialapi.prefix_item", "%s %s");
     }
 }

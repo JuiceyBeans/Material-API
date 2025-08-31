@@ -2,12 +2,15 @@ package com.juiceybeans.materialapi.common.item;
 
 import com.juiceybeans.materialapi.api.Material;
 import com.juiceybeans.materialapi.api.TagPrefix;
+import com.juiceybeans.materialapi.common.util.LangUtil;
 
 import lombok.Getter;
 import lombok.Setter;
 
 import net.minecraft.client.color.item.ItemColor;
+import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
@@ -34,6 +37,13 @@ public class TagPrefixItem extends Item {
             }
             return 0xFFFFFF; // No tint for other layers
         });
+    }
+
+    @Override
+    public Component getName(ItemStack stack) {
+        return Component.translatable("item.materialapi.prefix_item",
+                LangUtil.formatToEnglishLocalization(this.getMaterial().getName()),
+                LangUtil.formatToEnglishLocalization(this.getTagPrefix().getName()));
     }
 
     public String getUnlocalisedName() {
