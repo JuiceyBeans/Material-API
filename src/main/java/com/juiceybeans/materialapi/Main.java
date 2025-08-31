@@ -5,6 +5,7 @@ import com.juiceybeans.materialapi.common.item.ModItems;
 import com.juiceybeans.materialapi.common.tab.ModTabs;
 
 import com.mojang.logging.LogUtils;
+import net.minecraft.resources.ResourceLocation;
 import org.slf4j.Logger;
 
 import net.minecraftforge.common.MinecraftForge;
@@ -19,6 +20,10 @@ public class Main {
 
     public static final String MOD_ID = "materialapi";
     public static final Logger LOGGER = LogUtils.getLogger();
+
+    public static ResourceLocation id(String path) {
+        return new ResourceLocation(MOD_ID, path);
+    }
 
     public Main() {
         IEventBus bus = FMLJavaModLoadingContext.get().getModEventBus();
